@@ -5,7 +5,6 @@ const Database = require("better-sqlite3");
 const path = require("path");
 
 const app = express();
-const PORT = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -757,18 +756,14 @@ app.use((error, req, res, next) => {
     });
 });
 
-app.listen(PORT, () => {
-    console.log("======================================");
-    console.log(" GlobeTrek Adventures");
-    console.log(" Server running successfully");
-    console.log(` http://localhost:${PORT}`);
-    console.log("======================================");
-    console.log("");
-    console.log("Demo Admin:");
-    console.log("Email: admin@globetrek.lk");
-    console.log("Password: Admin@123");
-    console.log("");
-    console.log("Demo Staff:");
-    console.log("Email: staff@globetrek.lk");
-    console.log("Password: Staff@123");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`
+======================================
+ GlobeTrek Adventures
+ Server running successfully
+ http://localhost:${PORT}
+======================================
+`);
 });
